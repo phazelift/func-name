@@ -1,0 +1,27 @@
+{
+  "name": "func-name",
+  "version": "0.0.1",
+  "description": "A rudimentary and type save function name retrieve",
+  "main": "func-name.min.js",
+  "dependencies": {
+    "types.js": "1.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phazelift/func-name"
+  },
+  "keywords": [
+    "function",
+    "func",
+    "name"
+  ],
+  "author": "Dennis Raymondo van der Sluis <phazelift@gmail.com> (https://github.com/phazelift/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phazelift/func-name/issues"
+  },
+  "homepage": "https://github.com/phazelift/func-name"
+}
