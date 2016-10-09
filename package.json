@@ -1,6 +1,6 @@
 {
   "name": "func-name",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A rudimentary and type save function name retrieve",
   "main": "func-name.min.js",
   "dependencies": {
