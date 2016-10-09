@@ -5,24 +5,31 @@
   types = require('types.js');
 
   funcname = function(func) {
-    var extract, name;
-    name = types.forceString(funcname.anonymusName);
-    if (types.isFunction(func)) {
-      if ((types.isString(func.name)) && func.name.length) {
-        return func.name;
-      }
-      extract = types.forceArray(/^\s*function\s*([^\(]*)/im.exec(func.toString()));
-      if (extract.length && extract[1]) {
-        return types.forceString(extract[1], name);
-      }
+    var extract;
+    if (types.notFunction(func)) {
+      return funcname.log('func-name: error, cannot get function name from a non-function argument!');
     }
-    return name;
+    if ((types.isString(func.name)) && func.name.length) {
+      return func.name;
+    }
+    extract = types.forceArray(/^\s*function\s*([^\(]*)/im.exec(func.toString()));
+    if ((extract.length > 1) && (types.isString(extract[1])) && extract[1].length) {
+      return extract[1];
+    }
+    return types.forceString(funcname.anonymusName);
   };
 
   funcname.anonymusName = '';
 
   funcname.nameAnonymus = function(name) {
     funcname.anonymusName = types.forceString(name, 'anonymus');
+    return funcname;
+  };
+
+  funcname.log = types.forceFunction();
+
+  funcname.debug = function(handler) {
+    funcname.log = types.forceFunction(handler, console.log);
     return funcname;
   };
 

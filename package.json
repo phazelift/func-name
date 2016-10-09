@@ -1,7 +1,7 @@
 {
   "name": "func-name",
-  "version": "0.1.2",
-  "description": "A rudimentary and type save function name retrieve",
+  "version": "0.2.0",
+  "description": "A dynamically type safe, robust and flexible function name retrieve.",
   "main": "func-name.min.js",
   "dependencies": {
     "types.js": "1.6.3"
@@ -16,7 +16,9 @@
   "keywords": [
     "function",
     "func",
-    "name"
+    "name",
+    "get",
+    "retrieve"
   ],
   "author": "Dennis Raymondo van der Sluis <phazelift@gmail.com> (https://github.com/phazelift/)",
   "license": "MIT",

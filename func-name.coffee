@@ -1,5 +1,5 @@
 #
-# easy and type save get function name
+# A rudimentary and type save function name retrieve
 #
 # MIT License
 #
@@ -30,22 +30,37 @@ types= require 'types.js'
 
 funcname= ( func ) ->
 
-	name= types.forceString funcname.anonymusName
-	if types.isFunction func
-		return func.name if (types.isString func.name) and func.name.length
-		extract= types.forceArray /^\s*function\s*([^\(]*)/im.exec func.toString()
-		if extract.length and extract[1]
-			return types.forceString extract[1], name
-	return name
+	if types.notFunction func
+		return funcname.log 'func-name: error, cannot get function name from a non-function argument!'
+
+	# might be present
+	return func.name if (types.isString func.name) and func.name.length
+
+	# extract from function with regexp
+	extract= types.forceArray /^\s*function\s*([^\(]*)/im.exec func.toString()
+	return extract[1] if (extract.length > 1) and (types.isString extract[1]) and extract[1].length
+
+	# fallback to default
+	return types.forceString funcname.anonymusName
 
 
 
+# default anonymus name to be an empty string as logical false
 funcname.anonymusName= '';
 
+# allow for custom anonymus name, restricted to String type, fallback to 'anonymus'
 funcname.nameAnonymus= ( name ) ->
 	funcname.anonymusName= types.forceString name, 'anonymus'
 	return funcname
 
+
+
+# default no error log, run as empty function
+funcname.log= types.forceFunction()
+
+funcname.debug= ( handler ) ->
+	funcname.log= types.forceFunction handler, console.log
+	return funcname
 
 
 
