@@ -30,13 +30,22 @@ types= require 'types.js'
 
 funcname= ( func ) ->
 
-	name= 'anonymus'
+	name= types.forceString funcname.anonymusName
 	if types.isFunction func
 		return func.name if (types.isString func.name) and func.name.length
 		extract= types.forceArray /^\s*function\s*([^\(]*)/im.exec func.toString()
 		if extract.length and extract[1]
 			return types.forceString extract[1], name
 	return name
+
+
+
+funcname.anonymusName= '';
+
+funcname.nameAnonymus= ( name ) ->
+	funcname.anonymusName= types.forceString name, 'anonymus'
+	return funcname
+
 
 
 

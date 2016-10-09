@@ -6,7 +6,7 @@
 
   funcname = function(func) {
     var extract, name;
-    name = 'anonymus';
+    name = types.forceString(funcname.anonymusName);
     if (types.isFunction(func)) {
       if ((types.isString(func.name)) && func.name.length) {
         return func.name;
@@ -17,6 +17,13 @@
       }
     }
     return name;
+  };
+
+  funcname.anonymusName = '';
+
+  funcname.nameAnonymus = function(name) {
+    funcname.anonymusName = types.forceString(name, 'anonymus');
+    return funcname;
   };
 
   module.exports = funcname;
